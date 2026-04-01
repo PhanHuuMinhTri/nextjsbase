@@ -1,18 +1,12 @@
 import http from '@/lib/http';
-import {
-  LoginBodyType,
-  LoginResType,
-  RegisterBodyType,
-  RegisterResType,
-} from '@/schemaValidations/auth.schema';
+import { LoginBodyType, LoginResType } from '@/schemaValidations/auth.schema';
 
 const authApiRequest = {
-  login: (body: LoginBodyType) => http.post<LoginResType>('/auth/login', body),
-  auth: (body: { sessionToken: string; expiresAt: string }) =>
-    http.post('/api/auth', body, {
+  slogin: (body: LoginBodyType) => http.post<LoginResType>('/auth/login', body),
+  login: (body: LoginBodyType) =>
+    http.post<LoginResType>('/api/auth/login', body, {
       baseUrl: '',
     }),
-  register: (body: RegisterBodyType) => http.post<RegisterResType>('/auth/register', body),
 };
 
 export default authApiRequest;
